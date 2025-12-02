@@ -1,6 +1,6 @@
 const zignite = @import("../zignite.zig");
 const std = @import("std");
-const BoundedArray = std.BoundedArray;
+const BoundedArray = @import("../bounded_array.zig").BoundedArray;
 const expect = std.testing.expect;
 const TrySet = @import("try_set.zig").TrySet;
 

@@ -7,8 +7,8 @@ const Reduce = @import("reduce.zig").Reduce;
 test "max_by: abs_comp" {
     const abs_comp = struct {
         fn abs_comp(x: f32, y: f32) Order {
-            const x_abs = @fabs(x);
-            const y_abs = @fabs(y);
+            const x_abs = @abs(x);
+            const y_abs = @abs(y);
             return if (x_abs < y_abs) Order.lt else if (x_abs > y_abs) Order.gt else Order.eq;
         }
     }.abs_comp;

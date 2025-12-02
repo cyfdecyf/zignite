@@ -26,8 +26,13 @@ test "range" {
 }
 
 pub fn Range(comptime T: type) type {
-    if (comptime !std.meta.trait.isNumber(T)) {
-        @compileError("!std.meta.trait.isNumber(" ++ @typeName(T) ++ ")");
+    const type_info = @typeInfo(T);
+    const is_number = switch (type_info) {
+        .int, .float, .comptime_int, .comptime_float => true,
+        else => false,
+    };
+    if (comptime !is_number) {
+        @compileError("!isNumber(" ++ @typeName(T) ++ ")");
     }
 
     return struct {
